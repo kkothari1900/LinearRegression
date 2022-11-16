@@ -5,15 +5,16 @@ date: "2022-11-15"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
+```{r Reading in Dataset}
 knitr::opts_chunk$set
 # Library Upload 
 library(MASS)
 library(ISLR)
 
 fix(Boston) # This function allows the dataset to be edited on the fly. 
-names(Boston)
+#names(Boston)
 ```
+
 
 ```{r simple linear regression }
 # Using the lm function
@@ -21,12 +22,46 @@ lm.fit = lm(medv~lstat,data = Boston)
 attach(Boston)
 lm.fit = lm(medv~lstat)
 
-lm.fit
+summary(lm.fit)
+
+# We found out that there are three variables that are missing from the dataset: he following objects are masked from Boston (pos = 3): age, black, chas, crim, dis, indus, lstat,medv, nox, ptratio, rad, rm, tax, zn
+
+names(lm.fit)
+coef(lm.fit)
+#(Intercept)       lstat 
+# 34.5538409  -0.9500494 
+
+#Extracting the confidence intervals of predicted intervals from dataset 
+predict(lm.fit,data.frame(lstat = c(5,10,15)),
+        interval = "confidence")
+
+predict(lm.fit,data.frame(lstat = c(5,10,15)),
+        interval = "prediction")
+
+#       fit      lwr      upr
+#1 29.80359 29.00741 30.59978
+#2 25.05335 24.47413 25.63256
+#3 20.30310 19.73159 20.87461
+
+#       fit       lwr      upr
+#1 29.80359 17.565675 42.04151
+#2 25.05335 12.827626 37.27907
+#3 20.30310  8.077742 32.52846
+
 ```
+The 95% confidence interval  associated with the lstat value 10:
++ (24.47,25.63)
 
+The 95% prediction interval associated with the lstat value 10:
++ (12.828,37.28)
 
+As seen the confidence and prediction intervals are centered around the same point. 
+ + The predicted value of 25.05 for medv when lstat = 10
 
-```{r pressure, echo=FALSE}
+```{r plotting simple linear regression}
+plot(lstat,medv)
+abline(lm.fit)
+
 
 ```
 
