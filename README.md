@@ -9,7 +9,7 @@ In this project I will be illustrating and documenting the steps of Simple Linea
 4. Step 4, using confint() function to obtain the confidence interval for coefficient estimates 
 5. Step 5, using the predict() function to produce the confidence intervals and prediction intervals for a given lstat value (5,10,15)
 6. Step 6, plotting medv and lstat along with the least squares regression line 
-7. Step 7, 
+7. Step 7, Computing the residuals from a linear regression fit with the residuals () function. 
 
 ## Packages Used:
 ##### MASS #### 

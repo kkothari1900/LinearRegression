@@ -63,6 +63,23 @@ plot(lstat,medv)
 abline(lm.fit)
 
 
+# Plotting lines and points with lwd = 3. This will increase the width of the regression line by factors of 3. 
+plot(lstat,medv,pch =20)
+abline (lm.fit ,lwd =3)
+
+plot(lstat,medv,pch =20)
+abline(lm.fit,lwd =3,col ="red")
+
+plot(lstat ,medv ,pch ="+")
+plot(1:20,1:20,pch =1:20)
 ```
 
+```{r Plott Residuals}
+plot(predict (lm.fit), residuals (lm.fit))
+plot(predict (lm.fit), rstudent (lm.fit))
+```
+```{r Hatvalues}
+plot(hatvalues (lm.fit))
+which.max(hatvalues (lm.fit))
 
+```
